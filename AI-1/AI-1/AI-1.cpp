@@ -2,10 +2,30 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include "node.cpp"
+
+using namespace std;
+
+vector<node> nodes;
+
+void openFile(string fileName) {
+	ifstream inputFile;
+	inputFile.open(fileName);
+	string line;
+	while (getline(inputFile, line) && line != "END OF INPUT") {
+		stringstream parser;
+		parser >> line;
+		
+	}
+}
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+    cout << "Hello World!\n"; 
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
