@@ -18,8 +18,6 @@ void openFile(string fileName) {
 	string line;
 	while (getline(inputFile, line) && line != "END OF INPUT") {
 		stringstream parser;
-		parser >> line;
-		
 	}
 }
 
