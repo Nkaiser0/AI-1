@@ -134,13 +134,33 @@ void openFile(string fileName) {
 		while (getline(spaceSpliter, s, ' ')) {
 			container.push_back(s);
 		}
-		node n1 = node(container[0]);
-		edge e1 = edge(container[1], stoi(container[2]));
-		node n2 = node(container[1]);
-		edge e2 = edge(container[0], stoi(container[2]));
-		n1.edges.push_back(e1);
-		n2.edges.push_back(e2);
-		nodes.push_back(n1);
-		nodes.push_back(n2);
+		if (nodes.size() == 0) {
+			node n = node(container[0]);
+			n.edges.push_back(edge(container[1], stoi(container[2])));
+			nodes.push_back(n);
+		}
+		bool node1Found = false;
+		bool node2Found = false;
+		for(node n : nodes) {
+			if (node1Found == false && n.name == container[0]) {
+				n.edges.push_back(edge(container[1], stoi(container[2])));
+				node1Found = true;
+			}
+			else if (node2Found == false && n.name == container[1]) {
+				n.edges.push_back(edge(container[0], stoi(container[2])));
+					node2Found = true;
+			}
+		}
+		if (node1Found == false) {
+			node n = node(container[0]);
+			n.edges.push_back(edge(container[1], stoi(container[2])));
+			nodes.push_back(n);
+		}
+		if (node2Found == false) {
+			node n = node(container[1]);
+			n.edges.push_back(edge(container[0], stoi(container[2])));
+			nodes.push_back(n);
+		}
 	}
+
 }
