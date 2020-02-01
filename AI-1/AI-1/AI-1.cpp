@@ -63,19 +63,19 @@ void UCS(node start, node dest) {
 		for (edge nextEdge : list.front().edges) {
 			int loc = getNodeByName(nodes, nextEdge.destination);
 
-			if (graph.at(loc).color == undiscoveredColor) {
-				graph.at(loc).distance = nextEdge.cost + list.front().distance;
-				graph.at(loc).color = discoveredColor;
-				graph.at(loc).parent = &list.front();
-				list.push(graph.at(loc));
+			if (nodes.at(loc).color == undiscoveredColor) {
+				nodes.at(loc).distance = nextEdge.cost + list.front().distance;
+				nodes.at(loc).color = discoveredColor;
+				nodes.at(loc).parent = &list.front();
+				list.push(nodes.at(loc));
 
 
 			}
-			else if (graph.at(loc).color == discoveredColor) {
+			else if (nodes.at(loc).color == discoveredColor) {
 
-				if (graph.at(loc).distance > nextEdge.cost + list.front().distance) {
-					graph.at(loc).distance = nextEdge.cost + list.front().distance;
-					graph.at(loc).parent = &list.front();
+				if (nodes.at(loc).distance > nextEdge.cost + list.front().distance) {
+					nodes.at(loc).distance = nextEdge.cost + list.front().distance;
+					nodes.at(loc).parent = &list.front();
 				}
 
 			}
