@@ -22,6 +22,7 @@ string traversedColor = "black";
 int getNodeByName(string name);
 
 void openFile(string fileName);
+void UCS(node start, node dest);
 
 	int main(int argc, char** argv)
 {
@@ -36,7 +37,10 @@ void openFile(string fileName);
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
 
 	openFile(filename);
-	//UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]);
+	int originLoc = getNodeByName(origin_city);
+	node origin = nodes.at(originLoc);
+	node destin = nodes.at(getNodeByName(destination_city));
+	UCS(origin, destin);
 
 	return 0;
 }
@@ -54,6 +58,9 @@ void openFile(string fileName);
 
 
 void UCS(node start, node dest) {
+	if (nodes.size() == 0) {
+		return;
+	}
 	queue<node> list;
 	start.color = "grey";
 	list.push(start);
@@ -116,7 +123,7 @@ void UCS(node start, node dest) {
 
 int getNodeByName(string name) {
 	for (int i = 0; i < (int) nodes.size(); i++) {
-		if (nodes.at(i).name == name) {
+		if (nodes.at(i).name.compare(name) == 0) {
 			return i;
 		}
 	}
