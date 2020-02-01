@@ -148,13 +148,14 @@ void openFile(string fileName) {
 		}
 		bool node1Found = false;
 		bool node2Found = false;
-		for(node n : nodes) {
+		for (int i = 0; i < nodes.size(); i++) {
+			node n = nodes[i];
 			if (node1Found == false && n.name == container[0]) {
-				n.edges.push_back(edge(container[1], stoi(container[2])));
+				nodes[i].edges.push_back(edge(container[1], stoi(container[2])));
 				node1Found = true;
 			}
 			else if (node2Found == false && n.name == container[1]) {
-				n.edges.push_back(edge(container[0], stoi(container[2])));
+				nodes[i].edges.push_back(edge(container[0], stoi(container[2])));
 					node2Found = true;
 			}
 		}

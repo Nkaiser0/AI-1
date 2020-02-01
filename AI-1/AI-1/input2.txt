@@ -14,7 +14,7 @@ Dortmund Duesseldorf 69
 Kassel Frankfurt 185
 Frankfurt Dortmund 221
 Frankfurt Nuremburg 222
-Leipzig Nuremberg 263
+Leipzig Nuremburg 263
 Dortmund Saarbruecken 350
 Saarbruecken Karlsruhe 143
 Karlsruhe Struttgart 71
