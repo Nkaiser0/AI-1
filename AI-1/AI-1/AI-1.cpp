@@ -31,10 +31,14 @@ void openFile(string fileName) {
 		while (getline(spaceSpliter, s, ' ')) {
 			container.push_back(s);
 		}
-		node n = node(container[0]);
-		edge e = edge(container[1], container[2]);
-		n.edges.push_back(e);
-		nodes.push_back(n);
+		node n1 = node(container[0]);
+		edge e1 = edge(container[1], container[2]);
+		node n2 = node(container[1]);
+		edge e2 = edge(container[0], container[2]);
+		n1.edges.push_back(e1);
+		n2.edges.push_back(e2);
+		nodes.push_back(n1);
+		nodes.push_back(n2);
 }
 
 int main(int argc, char** argv)
