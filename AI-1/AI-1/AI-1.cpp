@@ -19,7 +19,7 @@ string undiscoveredColor = "white";
 string discoveredColor = "grey";
 string traversedColor = "black";
 
-int getNodeByName(vector<node> nodes, string name);
+int getNodeByName(string name);
 
 void openFile(string fileName);
 
@@ -61,7 +61,7 @@ void UCS(node start, node dest) {
 	while (!list.empty()) {
 
 		for (edge nextEdge : list.front().edges) {
-			int loc = getNodeByName(nodes, nextEdge.destination);
+			int loc = getNodeByName(nextEdge.destination);
 
 			if (nodes.at(loc).color == undiscoveredColor) {
 				nodes.at(loc).distance = nextEdge.cost + list.front().distance;
@@ -82,13 +82,13 @@ void UCS(node start, node dest) {
 
 		}
 		string name = list.front().name;
-		int loc = getNodeByName(nodes, name);
+		int loc = getNodeByName(name);
 
 		nodes.at(loc).color = traversedColor;
 		list.pop();
 
 	}
-	int distLoc = getNodeByName(nodes, dest.name);
+	int distLoc = getNodeByName(dest.name);
 	int totalDist = nodes.at(distLoc).distance;
 	node currentNode = nodes.at(distLoc);
 	stack<node> parents;
