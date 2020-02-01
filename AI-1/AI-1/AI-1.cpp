@@ -53,7 +53,7 @@ void openFile(string fileName);
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
 
 
-void UCS(vector<node> graph, node start, node dest) {
+void UCS(node start, node dest) {
 	queue<node> list;
 	start.color = "grey";
 	list.push(start);
@@ -61,7 +61,7 @@ void UCS(vector<node> graph, node start, node dest) {
 	while (!list.empty()) {
 
 		for (edge nextEdge : list.front().edges) {
-			int loc = getNodeByName(graph, nextEdge.destination);
+			int loc = getNodeByName(nodes, nextEdge.destination);
 
 			if (graph.at(loc).color == undiscoveredColor) {
 				graph.at(loc).distance = nextEdge.cost + list.front().distance;
@@ -82,18 +82,18 @@ void UCS(vector<node> graph, node start, node dest) {
 
 		}
 		string name = list.front().name;
-		int loc = getNodeByName(graph, name);
+		int loc = getNodeByName(nodes, name);
 
-		graph.at(loc).color = traversedColor;
+		nodes.at(loc).color = traversedColor;
 		list.pop();
 
 	}
-	int distLoc = getNodeByName(graph, dest.name);
-	int totalDist = graph.at(distLoc).distance;
-	node currentNode = graph.at(distLoc);
+	int distLoc = getNodeByName(nodes, dest.name);
+	int totalDist = nodes.at(distLoc).distance;
+	node currentNode = nodes.at(distLoc);
 	stack<node> parents;
 
-	parents.push(graph.at(distLoc));
+	parents.push(nodes.at(distLoc));
 
 	while (&currentNode) {
 		if (&currentNode.parent) {
@@ -114,7 +114,7 @@ void UCS(vector<node> graph, node start, node dest) {
 	}
 }
 
-int getNodeByName(vector<node> nodes, string name) {
+int getNodeByName(string name) {
 	for (int i = 0; i < (int) nodes.size(); i++) {
 		if (nodes.at(i).name == name) {
 			return i;
