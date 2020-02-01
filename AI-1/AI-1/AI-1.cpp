@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <stack>
 #include <sstream>
 #include "node.h"
 #include "edge.h"
@@ -41,7 +42,7 @@ void openFile(string fileName) {
 		nodes.push_back(n2);
 }
 
-int main(int argc, char** argv)
+	int main(int argc, char** argv)
 {
 	// If we don't have the required 3 inputs
 	if (argc != 4)
@@ -52,6 +53,9 @@ int main(int argc, char** argv)
 	destination_city = argv[3];
 
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
+
+	openfile(filename);
+	UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]
 
 	return 0;
 }
@@ -96,13 +100,37 @@ void UCS(vector<node> graph, node start, node dest) {
 			}
 
 		}
+		string name = list.front().name;
+		int loc = getNodeByName(graph, name);
 
+		graph.at(loc).color = traversedColor;
 		list.pop();
 
 	}
 	int distLoc = getNodeByName(graph, dest.name);
+	int totalDist = graph.at(distLoc).distance;
+	node currentNode = graph.at(distLoc);
+	stack<node> parents;
 
+	parents.push(graph.at(distLoc));
 
+	while (&currentNode) {
+		if (&currentNode.parent) {
+			parents.push(*currentNode.parent);
+		}
+	}
+
+	cout << "Distance: " << totalDist << " km" << endl << "route: " << endl;
+	
+	while (!parents.empty) {
+		node current = parents.top();
+		parents.pop();
+		node next = parents.top();
+		if (&next) {
+			cout << current.name << "to" << next.name << "," << totalDist - next.distance << " km" << endl;
+		}
+		
+	}
 }
 
 int getNodeByName(vector<node> nodes, string name) {
