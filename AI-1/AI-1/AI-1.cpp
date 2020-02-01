@@ -63,6 +63,7 @@ void UCS(node start, node dest) {
 	}
 	queue<node> list;
 	start.color = "grey";
+	start.parent = "";
 	list.push(start);
 
 	while (!list.empty()) {
@@ -73,7 +74,7 @@ void UCS(node start, node dest) {
 			if (nodes.at(loc).color == undiscoveredColor) {
 				nodes.at(loc).distance = nextEdge.cost + list.front().distance;
 				nodes.at(loc).color = discoveredColor;
-				nodes.at(loc).parent = &list.front();
+				nodes.at(loc).parent = list.front().name;
 				list.push(nodes.at(loc));
 
 
@@ -82,7 +83,7 @@ void UCS(node start, node dest) {
 
 				if (nodes.at(loc).distance > nextEdge.cost + list.front().distance) {
 					nodes.at(loc).distance = nextEdge.cost + list.front().distance;
-					nodes.at(loc).parent = &list.front();
+					nodes.at(loc).parent = list.front().name;
 				}
 
 			}
@@ -98,24 +99,23 @@ void UCS(node start, node dest) {
 	int distLoc = getNodeByName(dest.name);
 	int totalDist = nodes.at(distLoc).distance;
 	node currentNode = nodes.at(distLoc);
-	stack<node> parents;
+	stack<string> parents;
 
-	parents.push(nodes.at(distLoc));
+	parents.push(nodes.at(distLoc).name);
 
-	while (&currentNode) {
-		if (&currentNode.parent) {
-			parents.push(*currentNode.parent);
-		}
+	while (currentNode.parent != "") {
+		parents.push(currentNode.parent);
+		currentNode = nodes[getNodeByName(currentNode.parent)];
 	}
 
 	cout << "Distance: " << totalDist << " km" << endl << "route: " << endl;
 	
-	while (!parents.empty()) {
-		node current = parents.top();
+	while (parents.size() >= 2) {
+		node current = nodes[getNodeByName(parents.top())];
 		parents.pop();
-		node next = parents.top();
+		node next = nodes[getNodeByName(parents.top())];
 		if (&next) {
-			cout << current.name << "to" << next.name << "," << totalDist - next.distance << " km" << endl;
+			cout << current.name << " to " << next.name << ", " << totalDist - next.distance << " km" << endl;
 		}
 		
 	}
