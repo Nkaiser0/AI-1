@@ -64,17 +64,28 @@ void UCS(vector<node> graph, node start, node dest) {
 			int loc = getNodeByName(graph, nextEdge.destination);
 
 			if (graph.at(loc).color == undiscoveredColor) {
-				graph.at(loc).distance = nextEdge.cost;
+				graph.at(loc).distance = nextEdge.cost + list.front().distance;
 				graph.at(loc).color = discoveredColor;
+				graph.at(loc).parent = &list.front();
+				list.push(graph.at(loc));
+
 
 			}
 			else if (graph.at(loc).color == discoveredColor) {
+
+				if (graph.at(loc).distance > nextEdge.cost + list.front().distance) {
+					graph.at(loc).distance = nextEdge.cost + list.front().distance;
+					graph.at(loc).parent = &list.front();
+				}
 
 			}
 
 		}
 
+		list.pop();
+
 	}
+	int distLoc = getNodeByName(graph, dest.name);
 
 
 }
