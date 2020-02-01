@@ -103,12 +103,19 @@ void UCS(node start, node dest) {
 
 	parents.push(nodes.at(distLoc).name);
 
+	if (totalDist == 0) {
+		cout << "Distance: infinity" << endl << "route: " << endl << "none";
+		return;
+	}
+
+	cout << "Distance: " << totalDist << " km" << endl << "route: " << endl;
+
 	while (currentNode.parent != "") {
 		parents.push(currentNode.parent);
 		currentNode = nodes[getNodeByName(currentNode.parent)];
 	}
 
-	cout << "Distance: " << totalDist << " km" << endl << "route: " << endl;
+	
 	
 	while (parents.size() >= 2) {
 		node current = nodes[getNodeByName(parents.top())];
