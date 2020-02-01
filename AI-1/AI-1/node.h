@@ -12,4 +12,6 @@ public:
 	node(string);
 	string name;
 	vector<edge> edges;
+	string color = "white";
+	int distance = INT_MAX;
 };

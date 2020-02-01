@@ -5,12 +5,20 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <queue>
 #include <sstream>
-#include "node.cpp"
+#include "node.h"
+#include "edge.h"
 
 using namespace std;
 
 vector<node> nodes;
+
+string undiscoveredColor = "white";
+string discoveredColor = "grey";
+string traversedColor = "black";
+
+int getNodeByName(vector<node> nodes, string name);
 
 void openFile(string fileName) {
 	ifstream inputFile;
@@ -38,3 +46,39 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+
+void UCS(vector<node> graph, node start, node dest) {
+	queue<node> list;
+	start.color = "grey";
+	list.push(start);
+
+	while (!list.empty()) {
+
+		for (edge nextEdge : list.front().edges) {
+			int loc = getNodeByName(graph, nextEdge.destination);
+
+			if (graph.at(loc).color == undiscoveredColor) {
+				graph.at(loc).distance = nextEdge.cost;
+				graph.at(loc).color = discoveredColor;
+
+			}
+			else if (graph.at(loc).color == discoveredColor) {
+
+			}
+
+		}
+
+	}
+
+
+}
+
+int getNodeByName(vector<node> nodes, string name) {
+	for (int i = 0; i < (int) nodes.size(); i++) {
+		if (nodes.at(i).name == name) {
+			return i;
+		}
+	}
+	return -1;
+}
