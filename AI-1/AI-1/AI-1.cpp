@@ -55,7 +55,7 @@ void openFile(string fileName) {
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
 
 	openfile(filename);
-
+	UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]
 
 	return 0;
 }
