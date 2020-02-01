@@ -41,7 +41,7 @@ void openFile(string fileName) {
 		nodes.push_back(n2);
 }
 
-int main(int argc, char** argv)
+	int main(int argc, char** argv)
 {
 	// If we don't have the required 3 inputs
 	if (argc != 4)
@@ -52,6 +52,9 @@ int main(int argc, char** argv)
 	destination_city = argv[3];
 
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
+
+	openfile(filename);
+
 
 	return 0;
 }
