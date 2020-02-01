@@ -21,26 +21,7 @@ string traversedColor = "black";
 
 int getNodeByName(vector<node> nodes, string name);
 
-void openFile(string fileName) {
-	ifstream inputFile;
-	inputFile.open(fileName);
-	string line;
-	while (getline(inputFile, line) && line != "END OF INPUT") {
-		stringstream spaceSpliter(line);
-		vector<string> container;
-		string s;
-		while (getline(spaceSpliter, s, ' ')) {
-			container.push_back(s);
-		}
-		node n1 = node(container[0]);
-		edge e1 = edge(container[1], stoi(container[2]));
-		node n2 = node(container[1]);
-		edge e2 = edge(container[0], stoi(container[2]));
-		n1.edges.push_back(e1);
-		n2.edges.push_back(e2);
-		nodes.push_back(n1);
-		nodes.push_back(n2);
-}
+void openFile(string fileName);
 
 	int main(int argc, char** argv)
 {
@@ -54,8 +35,8 @@ void openFile(string fileName) {
 
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
 
-	openfile(filename);
-	UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]
+	openFile(filename);
+	//UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]);
 
 	return 0;
 }
@@ -140,4 +121,26 @@ int getNodeByName(vector<node> nodes, string name) {
 		}
 	}
 	return -1;
+}
+
+void openFile(string fileName) {
+	ifstream inputFile;
+	inputFile.open(fileName);
+	string line;
+	while (getline(inputFile, line) && line != "END OF INPUT") {
+		stringstream spaceSpliter(line);
+		vector<string> container;
+		string s;
+		while (getline(spaceSpliter, s, ' ')) {
+			container.push_back(s);
+		}
+		node n1 = node(container[0]);
+		edge e1 = edge(container[1], stoi(container[2]));
+		node n2 = node(container[1]);
+		edge e2 = edge(container[0], stoi(container[2]));
+		n1.edges.push_back(e1);
+		n2.edges.push_back(e2);
+		nodes.push_back(n1);
+		nodes.push_back(n2);
+	}
 }
