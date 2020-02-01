@@ -40,6 +40,7 @@ void openFile(string fileName) {
 		n2.edges.push_back(e2);
 		nodes.push_back(n1);
 		nodes.push_back(n2);
+	}
 }
 
 	int main(int argc, char** argv)
@@ -55,7 +56,7 @@ void openFile(string fileName) {
 	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
 
 	openfile(filename);
-	UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]
+	UCS(nodes, nodes[getNodeByName(origin_city)], nodes[getNodeByName(destination_city)]);
 
 	return 0;
 }
