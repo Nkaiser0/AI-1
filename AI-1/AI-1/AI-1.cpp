@@ -32,9 +32,9 @@ void openFile(string fileName) {
 			container.push_back(s);
 		}
 		node n1 = node(container[0]);
-		edge e1 = edge(container[1], (int)container[2]);
+		edge e1 = edge(container[1], stoi(container[2]));
 		node n2 = node(container[1]);
-		edge e2 = edge(container[0], (int)container[2]);
+		edge e2 = edge(container[0], stoi(container[2]));
 		n1.edges.push_back(e1);
 		n2.edges.push_back(e2);
 		nodes.push_back(n1);
