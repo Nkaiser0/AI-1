@@ -29,9 +29,16 @@ void openFile(string fileName) {
 	}
 }
 
-int main()
+int main(int argc, char** argv)
 {
-    cout << "Hello World!\n"; 
+	// If we don't have the required 3 inputs
+	if (argc != 3)
+		return -1;
+	string filename, origin_city, destination_city;
+	filename = argv[0];
+	origin_city = argv[1];
+	destination_city = argv[2];
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
