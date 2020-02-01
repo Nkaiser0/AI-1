@@ -14,5 +14,5 @@ public:
 	vector<edge> edges;
 	string color = "white";
 	int distance = 0;
-	node *parent;
+	string parent;
 };
