@@ -34,7 +34,7 @@ void UCS(node start, node dest);
 	origin_city = argv[2];
 	destination_city = argv[3];
 
-	cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
+	// cout << filename << "\n" << origin_city << "\n" << destination_city << endl;
 
 	openFile(filename);
 	int originLoc = getNodeByName(origin_city);
@@ -113,10 +113,16 @@ void UCS(node start, node dest) {
 	while (parents.size() >= 2) {
 		node current = nodes[getNodeByName(parents.top())];
 		parents.pop();
-		node next = nodes[getNodeByName(parents.top())];
-		if (&next) {
-			cout << current.name << " to " << next.name << ", " << totalDist - next.distance << " km" << endl;
+		string next = parents.top();
+		int dist;
+		for (auto dest : current.edges) {
+			if (dest.destination == next) {
+				dist = dest.cost;
+				break;
+			}
 		}
+		cout << current.name << " to " << next << ", " << dist << " km" << endl;
+		
 		
 	}
 }
