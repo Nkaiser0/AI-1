@@ -26,8 +26,20 @@ void openFile(string fileName) {
 	inputFile.open(fileName);
 	string line;
 	while (getline(inputFile, line) && line != "END OF INPUT") {
-		stringstream parser;
-	}
+		stringstream spaceSpliter(line);
+		vector<string> container;
+		string s;
+		while (getline(spaceSpliter, s, ' ')) {
+			container.push_back(s);
+		}
+		node n1 = node(container[0]);
+		edge e1 = edge(container[1], (int)container[2]);
+		node n2 = node(container[1]);
+		edge e2 = edge(container[0], (int)container[2]);
+		n1.edges.push_back(e1);
+		n2.edges.push_back(e2);
+		nodes.push_back(n1);
+		nodes.push_back(n2);
 }
 
 int main(int argc, char** argv)
