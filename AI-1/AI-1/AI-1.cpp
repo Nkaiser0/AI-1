@@ -103,7 +103,7 @@ void UCS(node start, node dest) {
 
 	cout << "Distance: " << totalDist << " km" << endl << "route: " << endl;
 	
-	while (!parents.empty) {
+	while (!parents.empty()) {
 		node current = parents.top();
 		parents.pop();
 		node next = parents.top();
